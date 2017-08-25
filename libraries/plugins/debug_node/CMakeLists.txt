@@ -10,6 +10,13 @@ target_link_libraries( steemit_debug_node steemit_app steemit_chain steemit_prot
 target_include_directories( steemit_debug_node
                             PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" )
 
+if( CLANG_TIDY_EXE )
+   set_target_properties(
+      steemit_debug_node PROPERTIES
+      CXX_CLANG_TIDY "${DO_CLANG_TIDY}"
+   )
+endif( CLANG_TIDY_EXE )
+
 install( TARGETS steemit_debug_node
          RUNTIME DESTINATION bin
          LIBRARY DESTINATION lib

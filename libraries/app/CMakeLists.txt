@@ -13,6 +13,13 @@ target_link_libraries( steemit_app steemit_chain steemit_protocol steemit_tags s
 target_include_directories( steemit_app
                             PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" )
 
+if( CLANG_TIDY_EXE )
+   set_target_properties(
+      steemit_app PROPERTIES
+      CXX_CLANG_TIDY "${DO_CLANG_TIDY}"
+   )
+endif( CLANG_TIDY_EXE )
+
 if(MSVC)
   set_source_files_properties( application.cpp api.cpp database_api.cpp PROPERTIES COMPILE_FLAGS "/bigobj" )
 endif(MSVC)

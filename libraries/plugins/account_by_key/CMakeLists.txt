@@ -9,6 +9,13 @@ target_link_libraries( steemit_account_by_key steemit_chain steemit_protocol ste
 target_include_directories( steemit_account_by_key
                             PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" )
 
+if( CLANG_TIDY_EXE )
+   set_target_properties(
+      steemit_account_by_key PROPERTIES
+      CXX_CLANG_TIDY "${DO_CLANG_TIDY}"
+   )
+endif( CLANG_TIDY_EXE )
+
 install( TARGETS
    steemit_account_by_key
 
