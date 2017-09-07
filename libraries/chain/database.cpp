@@ -10,6 +10,7 @@
 #include <steemit/chain/global_property_object.hpp>
 #include <steemit/chain/history_object.hpp>
 #include <steemit/chain/index.hpp>
+#include <steemit/chain/smt_objects.hpp>
 #include <steemit/chain/steem_evaluator.hpp>
 #include <steemit/chain/steem_objects.hpp>
 #include <steemit/chain/transaction_object.hpp>
@@ -2227,6 +2228,7 @@ void database::initialize_evaluators()
    _my->_evaluator_registry.register_evaluator< smt_setup_inflation_evaluator            >();
    _my->_evaluator_registry.register_evaluator< smt_set_setup_parameters_evaluator       >();
    _my->_evaluator_registry.register_evaluator< smt_set_runtime_parameters_evaluator     >();
+   _my->_evaluator_registry.register_evaluator< smt_elevate_account_evaluator            >();
 }
 
 
@@ -2276,6 +2278,7 @@ void database::initialize_indexes()
    add_core_index< vesting_delegation_index                >(*this);
    add_core_index< vesting_delegation_expiration_index     >(*this);
    add_core_index< htl_contract_index                      >(*this);
+   add_core_index< smt_token_index                         >(*this);
 
    _plugin_index_signal();
 }
